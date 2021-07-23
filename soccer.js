@@ -34,6 +34,10 @@ var MOVEMENT_DOWNLEFT = 8;
 
 var movement = MOVEMENT_STOP;
 
+var forceCoef = 0.0003;
+var sqrt2 = 1.4142;
+var forceCoef2 = forceCoef / sqrt2;
+
 function setup() {
   createCanvas(800, 600);
   engine = Engine.create();
@@ -117,42 +121,37 @@ function updatePlayer(){
   var x = 0;
   var y = 0;
 
-  coef = 0.0005;
-
   switch(movement) {
   case MOVEMENT_UP:
-    y = -1 * coef;
+    y = -1 * forceCoef;
     break;
   case MOVEMENT_DOWN:
-    y = coef;
+    y = forceCoef;
     break;
   case MOVEMENT_LEFT:
-    x = -1 * coef;
+    x = -1 * forceCoef;
     break;
   case MOVEMENT_RIGHT:
-    x = coef;
+    x = forceCoef;
     break;
   case MOVEMENT_UPLEFT:
-    x = -1 * coef;
-    y = -1 * coef;
+    x = -1 * forceCoef2;
+    y = -1 * forceCoef2;
     break;
   case MOVEMENT_UPRIGHT:
-    x = coef;
-    y = -1 * coef;
+    x = forceCoef2;
+    y = -1 * forceCoef2;
     break;
   case MOVEMENT_DOWNLEFT:
-    x = -1 * coef;
-    y = coef;
+    x = -1 * forceCoef2;
+    y = forceCoef2;
     break;
   case MOVEMENT_DOWNRIGHT:
-    x = coef;
-    y = coef;
+    x = forceCoef2;
+    y = forceCoef2;
     break;
   }
-
-
   Body.applyForce(player, player.position, {x:x, y:y});
-
 }
 
 
