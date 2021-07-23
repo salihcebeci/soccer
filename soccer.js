@@ -52,7 +52,7 @@ function setup() {
     isStatic: true
   });
   World.add(engine.world, [ball, player, ground1, ground2]);
-  Engine.run(engine);
+  Matter.Runner.run(engine);
 }
 
 // Using p5 to render
